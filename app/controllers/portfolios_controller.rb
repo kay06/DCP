@@ -1,13 +1,17 @@
 class PortfoliosController < ApplicationController
   def index
-    @portfolio_items = Portfolio.all 
+    @portfolio_items = Portfolio.all
   end
   
+  def angular
+     @angular_portfolio_items = Portfolio.angular
+  end
+   
   def new
     @portfolio_items = Portfolio.new
   end
   
-   def create
+  def create
     @portfolio_items = Portfolio.new(params.require(:portfolio).permit(:title, :subtitle,  :body))
 
     respond_to do |format|
@@ -36,10 +40,10 @@ class PortfoliosController < ApplicationController
   end
   
   def show
-    @portfolio_items = Portfolio.friendly.find(params[:id])
-end
+    @portfolio_items = Portfolio.find(params[:id])
+  end
   
-  def destroy
+def destroy
     @portfolio_items = Portfolio.find(params[:id])
     @portfolio_items.destroy    
 
