@@ -10,19 +10,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
-    
   end
-
-def toggle_status
-    if @blog.draft?
-      @blog.published!
-    elsif @blog.published?
-      @blog.draft!
-    end
-
-    redirect_to blogs_url, notice: 'Post status has been updated.'
-end
-
 
   # GET /blogs/new
   def new
@@ -33,7 +21,6 @@ end
   def edit
   end
 
-
   # POST /blogs
   # POST /blogs.json
   def create
@@ -41,7 +28,7 @@ end
 
     respond_to do |format|
       if @blog.save
-        format.html { redirect_to @blog, notice: 'your post is live.' }
+        format.html { redirect_to @blog, notice: 'Your post is now live.' }
       else
         format.html { render :new }
       end
@@ -54,10 +41,8 @@ end
     respond_to do |format|
       if @blog.update(blog_params)
         format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
-        format.json { render :show, status: :ok, location: @blog }
       else
         format.html { render :edit }
-        format.json { render json: @blog.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -67,9 +52,19 @@ end
   def destroy
     @blog.destroy
     respond_to do |format|
-      format.html { redirect_to blogs_url, notice: 'Blog was successfully deleted.' }
+      format.html { redirect_to blogs_url, notice: 'Post was removed.' }
       format.json { head :no_content }
     end
+  end
+
+  def toggle_status
+    if @blog.draft?
+      @blog.published!
+    elsif @blog.published?
+      @blog.draft!
+    end
+        
+    redirect_to blogs_url, notice: 'Post status has been updated.'
   end
 
   private
@@ -82,7 +77,4 @@ end
     def blog_params
       params.require(:blog).permit(:title, :body)
     end
-    
-    
-    
 end
