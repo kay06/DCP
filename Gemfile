@@ -65,3 +65,5 @@ end
 group :development, :test do
   gem 'pg'
 end
+
+gem 'devcamp_view_tool', git: 'https://github.com/jordanhudgens/devcamp_view_tool'
