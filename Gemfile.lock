@@ -230,7 +230,8 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devcamp_view_tool (~> 0.1.0)
   devise (~> 4.2)
-  dotenv-rails (~> 2.1, >= 2.1.2)
+  dotenv (~> 2.2, >= 2.2.1)
+  dotenv-rails
   font-awesome-rails (~> 4.7, >= 4.7.0.1)
   friendly_id (~> 5.1.0)
   jbuilder (~> 2.5)
